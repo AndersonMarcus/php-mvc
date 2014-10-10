@@ -24,6 +24,7 @@ class Songs extends Controller
         // NOTE: please write the name of the model "LikeThis"
         $songs_model = $this->loadModel('SongsModel');
         $songs = $songs_model->getAllSongs();
+        
 
         // load another model, perform an action, pass the returned data to a variable
         // NOTE: please write the name of the model "LikeThis"
@@ -79,5 +80,29 @@ class Songs extends Controller
 
         // where to go after song has been deleted
         header('location: ' . URL . 'songs/index');
+    }
+    
+     public function editSong($song_id)
+    {
+
+        // if we have an id of a song that should be deleted
+        if (isset($song_id)) { 
+           // die("ID da canção: $song_id");
+            // load model, perform an action on the model
+            $songs_model = $this->loadModel('SongsModel');
+           $song = $songs_model->getSong($song_id);
+           //die();
+           /*echo "<pre>";
+           var_dump($song);
+           echo "<pre>";
+           echo "<p>ID: ";*/
+           
+        }
+          // load views
+        //require 'application/views/_templates/header.php';
+        require 'application/views/songs/edit.php';
+       // require 'application/views/_templates/footer.php';
+
+       
     }
 }
