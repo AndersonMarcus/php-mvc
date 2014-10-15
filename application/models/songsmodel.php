@@ -31,11 +31,16 @@ class SongsModel
         return $query->fetchAll();
     }
     
-     public function getSongs($song_id)
+     public function getSong($song_id)
     {
-        $sql = "SELECT * FROM song WHERE id = $song_id";
+        $sql = "SELECT id, artist, track, link FROM song WHERE id = $song_id";
         $query = $this->db->prepare($sql);
-        $query->execute();
+        $query->execute(array(':song_id' => $song_id));
+        
+        /*echo "<pre> [DEBUG]";
+        var_dump($query->fetch());
+        echo "</pre>";
+        die();*/
 
         // fetchAll() is the PDO method that gets all result rows, here in object-style because we defined this in
         // libs/controller.php! If you prefer to get an associative array as the result, then do
